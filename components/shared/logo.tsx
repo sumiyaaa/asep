@@ -17,12 +17,12 @@ export function Logo({ className }: { className?: string }) {
           else it sits directly on the page background. */}
       <span className="inline-flex items-center rounded-md px-0 py-0 dark:bg-white dark:px-2.5 dark:py-1.5">
         <Image
-          src="/images/logo.webp"
+          src="/images/logo.png"
           alt=""
           width={435}
           height={61}
           priority
-          className="h-8 w-auto sm:h-9"
+          className="h-10 w-auto sm:h-11"
         />
       </span>
     </Link>

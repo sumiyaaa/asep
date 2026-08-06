@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
   /* Primary — deep clinical teal. The organization's core color: science, health, trust. */
   --color-primary-50: #eff9f7;
