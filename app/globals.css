@@ -1,0 +1,171 @@
+@import "tailwindcss";
+
+:root {
+  /* Primary — deep clinical teal. The organization's core color: science, health, trust. */
+  --color-primary-50: #eff9f7;
+  --color-primary-100: #d7f0ea;
+  --color-primary-200: #b0e0d5;
+  --color-primary-300: #82cabc;
+  --color-primary-400: #55ac9e;
+  --color-primary-500: #368e82;
+  --color-primary-600: #227267;
+  --color-primary-700: #1b5c54;
+  --color-primary-800: #184a44;
+  --color-primary-900: #163d38;
+  --color-primary-950: #09221f;
+
+  /* Accent — warm coral/amber. Used sparingly: CTAs, credential moments, key numbers. */
+  --color-accent-50: #fef4ee;
+  --color-accent-100: #fde3d4;
+  --color-accent-200: #fac3a4;
+  --color-accent-300: #f69c6c;
+  --color-accent-400: #f17641;
+  --color-accent-500: #e8623a;
+  --color-accent-600: #d24a25;
+  --color-accent-700: #ad3a1e;
+  --color-accent-800: #8a301f;
+  --color-accent-900: #712a1e;
+  --color-accent-950: #3d130c;
+
+  /* Neutral — warm stone, not clinical gray. */
+  --color-neutral-50: #faf9f7;
+  --color-neutral-100: #f3f1ec;
+  --color-neutral-200: #e6e2d9;
+  --color-neutral-300: #d3ccbe;
+  --color-neutral-400: #b3a996;
+  --color-neutral-500: #8f8471;
+  --color-neutral-600: #6f6656;
+  --color-neutral-700: #584f43;
+  --color-neutral-800: #3f382f;
+  --color-neutral-900: #2b2621;
+  --color-neutral-950: #1a1714;
+
+  /* Semantic status colors — separate from brand accent */
+  --color-success: #2e7d4f;
+  --color-warning: #a8721b;
+  --color-critical: #b6402a;
+
+  /* Surface tokens (theme-aware, redefined under .dark below) */
+  --background: var(--color-neutral-50);
+  --foreground: var(--color-neutral-900);
+  --surface: #ffffff;
+  --surface-muted: var(--color-neutral-100);
+  --border: var(--color-neutral-200);
+  --border-strong: var(--color-neutral-300);
+  --muted-foreground: var(--color-neutral-600);
+
+  --font-sans: var(--font-manrope);
+  --font-display: var(--font-fraunces);
+  --font-mono: var(--font-plex-mono);
+
+  --radius-sm: 0.4rem;
+  --radius-md: 0.65rem;
+  --radius-lg: 1.1rem;
+  --radius-xl: 1.75rem;
+}
+
+.dark {
+  --background: var(--color-neutral-950);
+  --foreground: var(--color-neutral-50);
+  --surface: #211d19;
+  --surface-muted: var(--color-neutral-900);
+  --border: var(--color-neutral-800);
+  --border-strong: var(--color-neutral-700);
+  --muted-foreground: var(--color-neutral-400);
+}
+
+@theme inline {
+  --color-primary-50: var(--color-primary-50);
+  --color-primary-100: var(--color-primary-100);
+  --color-primary-200: var(--color-primary-200);
+  --color-primary-300: var(--color-primary-300);
+  --color-primary-400: var(--color-primary-400);
+  --color-primary-500: var(--color-primary-500);
+  --color-primary-600: var(--color-primary-600);
+  --color-primary-700: var(--color-primary-700);
+  --color-primary-800: var(--color-primary-800);
+  --color-primary-900: var(--color-primary-900);
+  --color-primary-950: var(--color-primary-950);
+
+  --color-accent-50: var(--color-accent-50);
+  --color-accent-100: var(--color-accent-100);
+  --color-accent-200: var(--color-accent-200);
+  --color-accent-300: var(--color-accent-300);
+  --color-accent-400: var(--color-accent-400);
+  --color-accent-500: var(--color-accent-500);
+  --color-accent-600: var(--color-accent-600);
+  --color-accent-700: var(--color-accent-700);
+  --color-accent-800: var(--color-accent-800);
+  --color-accent-900: var(--color-accent-900);
+  --color-accent-950: var(--color-accent-950);
+
+  --color-neutral-50: var(--color-neutral-50);
+  --color-neutral-100: var(--color-neutral-100);
+  --color-neutral-200: var(--color-neutral-200);
+  --color-neutral-300: var(--color-neutral-300);
+  --color-neutral-400: var(--color-neutral-400);
+  --color-neutral-500: var(--color-neutral-500);
+  --color-neutral-600: var(--color-neutral-600);
+  --color-neutral-700: var(--color-neutral-700);
+  --color-neutral-800: var(--color-neutral-800);
+  --color-neutral-900: var(--color-neutral-900);
+  --color-neutral-950: var(--color-neutral-950);
+
+  --color-success: var(--color-success);
+  --color-warning: var(--color-warning);
+  --color-critical: var(--color-critical);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-surface-muted: var(--surface-muted);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-muted-foreground: var(--muted-foreground);
+
+  --font-sans: var(--font-sans);
+  --font-display: var(--font-display);
+  --font-mono: var(--font-mono);
+
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-xl: var(--radius-xl);
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+
+  html {
+    scroll-behavior: auto; /* Lenis owns smooth scrolling */
+  }
+
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+  }
+
+  ::selection {
+    background: var(--color-primary-600);
+    color: white;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent-500);
+    outline-offset: 2px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
