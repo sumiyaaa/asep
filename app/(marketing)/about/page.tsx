@@ -59,7 +59,7 @@ export default function AboutPage() {
           <p>
             Today, that work continues through the EPC certification exam, academic program accreditation, four
             open-access journals, and a public registry that lets employers, patients, and referring physicians
-            verify a professional's standing at a glance.
+            verify a professional&apos;s standing at a glance.
           </p>
         </div>
       </section>

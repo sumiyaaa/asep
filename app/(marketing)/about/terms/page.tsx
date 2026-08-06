@@ -22,7 +22,7 @@ export default function TermsPage() {
           <h2 className="font-display text-xl font-medium text-foreground">Professional and medical disclaimer</h2>
           <p>
             Content on this site is provided for informational and professional development purposes and does not
-            constitute medical advice. ASEP certification verifies completion of the Society's credentialing
+            constitute medical advice. ASEP certification verifies completion of the Society&apos;s credentialing
             requirements; it does not replace applicable state licensure where required.
           </p>
           <h2 className="font-display text-xl font-medium text-foreground">Membership and certification</h2>

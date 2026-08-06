@@ -1,23 +1,18 @@
 import type { Metadata } from "next";
-import {
-  Award,
-  Briefcase,
-  BadgeCheck,
-  GraduationCap,
-  Globe2,
-  Users,
-} from "lucide-react";
 import { Hero } from "@/components/marketing/hero";
 import { StatCounterGrid, type Stat } from "@/components/marketing/stat-counter";
 import { SectionHeading } from "@/components/shared/section-heading";
 import { Reveal } from "@/components/motion/reveal";
 import { StaggerGroup, StaggerItem } from "@/components/motion/stagger-group";
-import { MembershipTierCard, type MembershipTier } from "@/components/marketing/membership-tier-card";
-import { JournalCard, type JournalTeaser } from "@/components/marketing/journal-card";
+import { MembershipTierCard } from "@/components/marketing/membership-tier-card";
+import { JournalCard } from "@/components/marketing/journal-card";
 import { TestimonialCarousel, type Testimonial } from "@/components/marketing/testimonial-carousel";
 import { CtaSection } from "@/components/marketing/cta-section";
 import { NewsletterForm } from "@/components/marketing/newsletter-form";
 import { AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
+import { membershipTiers } from "@/lib/content/membership";
+import { journals } from "@/lib/content/journals";
+import { faqs } from "@/lib/content/faq";
 
 export const metadata: Metadata = {
   title: "American Society of Exercise Physiologists",
@@ -28,76 +23,6 @@ const stats: Stat[] = [
   { value: 460, suffix: "+", label: "EPC-certified professionals" },
   { value: 4, label: "Peer-reviewed, open-access journals" },
   { value: 6, label: "Membership pathways" },
-];
-
-const membershipTiers: MembershipTier[] = [
-  {
-    icon: Briefcase,
-    name: "Professional",
-    description: "For practicing exercise physiologists building their career under a recognized standard.",
-    href: "/membership/professional",
-  },
-  {
-    icon: BadgeCheck,
-    name: "EPC Certified",
-    description: "For members who hold the EPC credential and want full standing within the Society.",
-    href: "/membership/epc-certified",
-  },
-  {
-    icon: GraduationCap,
-    name: "Student",
-    description: "For students currently enrolled in an academic exercise physiology program.",
-    href: "/membership/student",
-  },
-  {
-    icon: Award,
-    name: "Fellow",
-    description: "The Society's highest membership honor, awarded on annual application by Nov 1.",
-    href: "/membership/fellow",
-  },
-  {
-    icon: Globe2,
-    name: "International",
-    description: "For exercise physiology professionals and academics practicing outside the U.S.",
-    href: "/membership/international",
-  },
-  {
-    icon: Users,
-    name: "Affiliate",
-    description: "For allied professionals who support the exercise physiology field.",
-    href: "/membership/affiliate",
-  },
-];
-
-const journals: JournalTeaser[] = [
-  {
-    abbreviation: "JEP Online",
-    name: "Journal of Exercise Physiology Online",
-    description: "Scopus-indexed, bi-monthly research on human performance and applied physiology.",
-    badge: "Scopus-indexed",
-    href: "/journals/jep-online",
-  },
-  {
-    abbreviation: "JEM Online",
-    name: "Journal of Exercise Medicine Online",
-    description: "Research at the intersection of exercise physiology and clinical medicine.",
-    badge: "Open access",
-    href: "/journals/jem-online",
-  },
-  {
-    abbreviation: "PEP Online",
-    name: "Professionalization of Exercise Physiology Online",
-    description: "The profession's development, standards, and credentialing scholarship since 1998.",
-    badge: "Since 1998",
-    href: "/journals/pep-online",
-  },
-  {
-    abbreviation: "JPEP",
-    name: "Journal of Professional Exercise Physiology",
-    description: "Applied research for practicing exercise physiologists and program directors.",
-    badge: "Open access",
-    href: "/journals/jpep",
-  },
 ];
 
 const testimonials: Testimonial[] = [
@@ -121,24 +46,11 @@ const testimonials: Testimonial[] = [
   },
 ];
 
-const faqs = [
-  {
-    q: "What does EPC certification require?",
-    a: "Current ASEP membership, an approved academic transcript, and a passing score (70% or higher) on a 200-question, 4-hour online exam. The standard exam fee is $300; students in an ASEP-accredited program pay a discounted $50 for their first attempt.",
-  },
-  {
-    q: "Which membership type is right for me?",
-    a: "Professional and EPC Certified cover most practicing exercise physiologists; Student is for those currently enrolled in a program; Fellow is an annually-applied-for honor; International and Affiliate cover practitioners and allied professionals outside those categories.",
-  },
-  {
-    q: "Are the journals free to read?",
-    a: "Yes — all four ASEP journals (JEP Online, JEM Online, PEP Online, and the Journal of Professional Exercise Physiology) are open access.",
-  },
-  {
-    q: "How does academic program accreditation work?",
-    a: "Institutions submit a candidate application and their accreditation manual materials for Board review, with a faculty member holding ASEP membership as part of the process, followed by an annual accreditation fee.",
-  },
-];
+// One representative question per category keeps the homepage teaser short;
+// the full list lives on /faq.
+const homeFaqs = ["Certification", "Membership", "Journals", "Accreditation"].map(
+  (category) => faqs.find((f) => f.category === category)!,
+);
 
 export default function HomePage() {
   return (
@@ -157,8 +69,15 @@ export default function HomePage() {
         />
         <StaggerGroup as="ul" className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {membershipTiers.map((tier) => (
-            <StaggerItem key={tier.name}>
-              <MembershipTierCard tier={tier} />
+            <StaggerItem key={tier.slug}>
+              <MembershipTierCard
+                tier={{
+                  icon: tier.icon,
+                  name: tier.name,
+                  description: tier.tagline,
+                  href: `/membership/${tier.slug}`,
+                }}
+              />
             </StaggerItem>
           ))}
         </StaggerGroup>
@@ -180,8 +99,16 @@ export default function HomePage() {
         />
         <StaggerGroup as="ul" className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {journals.map((journal) => (
-            <StaggerItem key={journal.abbreviation}>
-              <JournalCard journal={journal} />
+            <StaggerItem key={journal.slug}>
+              <JournalCard
+                journal={{
+                  abbreviation: journal.abbreviation,
+                  name: journal.name,
+                  description: journal.description,
+                  badge: journal.badge,
+                  href: `/journals/${journal.slug}`,
+                }}
+              />
             </StaggerItem>
           ))}
         </StaggerGroup>
@@ -199,7 +126,7 @@ export default function HomePage() {
         <SectionHeading eyebrow="FAQ" title="Common questions" align="center" className="mx-auto" />
         <Reveal className="mt-10">
           <div>
-            {faqs.map((item) => (
+            {homeFaqs.map((item) => (
               <AccordionItem key={item.q}>
                 <AccordionTrigger>{item.q}</AccordionTrigger>
                 <AccordionContent>{item.a}</AccordionContent>

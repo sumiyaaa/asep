@@ -41,7 +41,7 @@ export default function OfficersPage() {
           <Reveal className="mt-6">
             <Card>
               <p className="text-sm leading-relaxed text-muted-foreground">
-                The Board of Directors provides oversight of the Society's standards, accreditation decisions, and
+                The Board of Directors provides oversight of the Society&apos;s standards, accreditation decisions, and
                 strategic direction, working alongside standing committees covering practitioners, academics,
                 publications, and professional relations. Individual board member profiles will be published here
                 as part of the admin-managed content rollout.
